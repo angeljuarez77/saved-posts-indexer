@@ -3,16 +3,20 @@ import dotenv from 'dotenv';
 
 dotenv.config();
 const {
+  DB_HOST,
+  DB_PORT,
   DB_DATABASE,
   DB_USERNAME,
   DB_PASSWORD,
 } = process.env;
 
 const sequelize = new Sequelize({
+  host: DB_HOST || 'http://localhost',
+  port: parseInt(DB_PORT || '5432'),
   database: DB_DATABASE,
-  dialect: 'postgres',
   username: DB_USERNAME,
   password: DB_PASSWORD,
+  dialect: 'postgres',
   storage: ':memory:',
   models: [__dirname + '/models']
 });
