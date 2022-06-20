@@ -1,0 +1,42 @@
+{
+  "name": "saved-posts-indexer",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node ./dist/index.js",
+    "postinstall": "tsc",
+    "dev": "nodemon ./src/index.ts",
+    "seed": "ts-node ./src/db/connection.ts",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@types/express": "^4.17.13",
+    "body-parser": "^1.20.0",
+    "dotenv": "^16.0.1",
+    "express": "^4.18.1",
+    "meilisearch": "^0.25.1",
+    "node-fetch": "^3.2.6",
+    "pg": "^8.7.3",
+    "pg-hstore": "^2.3.4",
+    "puppeteer": "^14.4.1",
+    "reflect-metadata": "^0.1.13",
+    "sequelize": "^6.21.0",
+    "sequelize-typescript": "^2.1.3",
+    "snoowrap": "^1.23.0"
+  },
+  "devDependencies": {
+    "@types/node": "^18.0.0",
+    "@types/request": "^2.48.8",
+    "@types/validator": "^13.7.3",
+    "nodemon": "^2.0.16",
+    "ts-node": "^10.8.1",
+    "typescript": "^4.7.4"
+  },
+  "engines": {
+    "node": "16.x"
+  }
+}

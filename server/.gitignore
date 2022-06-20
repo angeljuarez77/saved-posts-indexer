@@ -1,0 +1,5 @@
+.env
+node_modules
+dist/
+src/db/data/data.json
+src/db/data/seed.ts
