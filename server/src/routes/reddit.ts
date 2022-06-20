@@ -30,7 +30,7 @@ redditRoutes.get('/saved', async (req, res) => {
 
 redditRoutes.post('/saved', async (req, res) => {
   try {
-    const posts = await r.getMe().getSavedContent({ limit: 500 });
+    const posts = await r.getMe().getSavedContent({ limit: 100 });
     posts.forEach(async (post: any) => {
       const { subreddit, subreddit_name_prefixed, title, over_18, id, permalink, url } = post;
 
