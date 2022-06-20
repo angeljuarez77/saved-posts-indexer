@@ -5,9 +5,7 @@ import RedditPost from "../db/models/RedditPost";
 
 dotenv.config();
 const meiliRoutes = express.Router();
-const client = new MeiliSearch({
-  host: process.env.MEILI_HOST || 'http://localhost:7700',
-});
+const client = new MeiliSearch({ host: process.env.MEILI_HOST || 'http://localhost:7700' });
 
 meiliRoutes.get('/index', async (req, res) => {
   try {
