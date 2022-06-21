@@ -4,10 +4,10 @@ import dotenv from 'dotenv';
 import RedditPost from "../db/models/RedditPost.js";
 
 dotenv.config();
-const meiliRoutes = express.Router();
+const router = express.Router();
 const client = new MeiliSearch({ host: process.env.MEILI_HOST || 'http://localhost:7700' });
 
-meiliRoutes.get('/index', async (req, res) => {
+router.get('/index', async (req, res) => {
   try {
     const indexes = await client.getIndexes();
     res.json({ indexes });
@@ -16,7 +16,7 @@ meiliRoutes.get('/index', async (req, res) => {
   }
 });
 
-meiliRoutes.post('/reddit', async (req, res) => {
+router.post('/reddit', async (req, res) => {
   try {
     const posts = await RedditPost.findAll();
     const response = await client.index('reddit_posts').updateDocuments(posts);
@@ -26,7 +26,7 @@ meiliRoutes.post('/reddit', async (req, res) => {
   }
 });
 
-meiliRoutes.delete('/index/:uid', async (req, res) => {
+router.delete('/index/:uid', async (req, res) => {
   try {
     const response = await client.deleteIndex(req.params.uid);
     res.json({ response });
@@ -35,4 +35,4 @@ meiliRoutes.delete('/index/:uid', async (req, res) => {
   }
 });
 
-export default meiliRoutes;
+export default router;

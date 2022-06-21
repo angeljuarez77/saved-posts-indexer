@@ -1,15 +1,17 @@
 import express from 'express';
 import bodyParser from 'body-parser';
-import redditRoutes from './routes/reddit.js';
-import meiliRoutes from './routes/meili.js';
+import reddit from './routes/reddit';
+import meili from './routes/meili';
+import ifttt from './routes/ifttt';
 
 const app = express();
 const PORT = process.env.PORT || 3001;
 
 app.use(bodyParser.json());
 
-app.use('/reddit', redditRoutes);
-app.use('/meili', meiliRoutes);
+app.use('/reddit', reddit);
+app.use('/meili', meili);
+app.use('/ifttt', ifttt);
 
 app.get('/', async (req, res) => {
   try {
@@ -22,3 +24,5 @@ app.get('/', async (req, res) => {
 app.listen(PORT, () => {
   console.log(`Express server listening on port: ${PORT}`);
 });
+
+export default app;

@@ -10,7 +10,7 @@ const {
   REDDIT_USERNAME,
   REDDIT_PASSWORD
 } = process.env;
-const redditRoutes = express.Router();
+const router = express.Router();
 const r = new Snoowrap({
   userAgent: 'random-user-agent',
   clientId: REDDIT_CLIENT_ID,
@@ -19,7 +19,7 @@ const r = new Snoowrap({
   password: REDDIT_PASSWORD
 });
 
-redditRoutes.get('/saved', async (req, res) => {
+router.get('/saved', async (req, res) => {
   try {
     const posts = await RedditPost.findAll();
     res.json({ count: posts.length, posts });
@@ -28,7 +28,7 @@ redditRoutes.get('/saved', async (req, res) => {
   }
 });
 
-redditRoutes.post('/saved', async (req, res) => {
+router.post('/saved', async (req, res) => {
   try {
     const limit = 100;
     const posts = await r.getMe().getSavedContent({ limit });
@@ -63,4 +63,4 @@ redditRoutes.post('/saved', async (req, res) => {
   }
 });
 
-export default redditRoutes;
+export default router;
