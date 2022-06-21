@@ -2,9 +2,7 @@ import { Sequelize, DataTypes } from 'sequelize';
 import dotenv from 'dotenv';
 
 dotenv.config();
-const sequelize = new Sequelize(process.env.DATABASE_URL || 'postgres://angeljuarez@localhost:5432/saved_posts_indexer', {
-  ssl: false
-});
+const sequelize = new Sequelize(process.env.DATABASE_URL || 'postgres://angeljuarez@localhost:5432/saved_posts_indexer');
 
 const RedditPost = sequelize.define('reddit_post', {
   reddit_post_id: {
