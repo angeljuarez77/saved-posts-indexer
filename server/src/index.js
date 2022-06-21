@@ -1,8 +1,8 @@
 import express from 'express';
 import bodyParser from 'body-parser';
-import reddit from './routes/reddit';
-import meili from './routes/meili';
-import ifttt from './routes/ifttt';
+import reddit from './routes/reddit.js';
+import meili from './routes/meili.js';
+import ifttt from './routes/ifttt.js';
 
 const app = express();
 const PORT = process.env.PORT || 3001;
