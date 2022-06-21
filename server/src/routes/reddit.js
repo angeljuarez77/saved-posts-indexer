@@ -1,6 +1,6 @@
 import express from 'express';
 import dotenv from 'dotenv';
-import RedditPost from '../db/models/RedditPost';
+import RedditPost from '../db/models/RedditPost.js';
 import Snoowrap from 'snoowrap';
 
 dotenv.config();
@@ -23,15 +23,16 @@ redditRoutes.get('/saved', async (req, res) => {
   try {
     const posts = await RedditPost.findAll();
     res.json({ count: posts.length, posts });
-  } catch(e: any) {
+  } catch(e) {
     console.error(e.message);
   }
 });
 
 redditRoutes.post('/saved', async (req, res) => {
   try {
-    const posts = await r.getMe().getSavedContent({ limit: 100 });
-    posts.forEach(async (post: any) => {
+    const limit = 100;
+    const posts = await r.getMe().getSavedContent({ limit });
+    posts.forEach(async (post) => {
       const { subreddit, subreddit_name_prefixed, title, over_18, id, permalink, url } = post;
 
       const finalObject = {
@@ -56,8 +57,8 @@ redditRoutes.post('/saved', async (req, res) => {
       }
     });
 
-    res.send('Last 500 posts should be up to date');
-  } catch(e: any) {
+    res.send(`Last ${limit} posts should be up to date`);
+  } catch(e) {
     console.error(e.message);
   }
 });
