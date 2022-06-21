@@ -11,6 +11,14 @@ app.use(bodyParser.json());
 app.use('/reddit', redditRoutes);
 app.use('/meili', meiliRoutes);
 
+app.get('/', async (req, res) => {
+  try {
+    res.json({ message: 'Hello, World!' });
+  } catch(e) {
+    console.error(e.message);
+  }
+});
+
 app.listen(PORT, () => {
   console.log(`Express server listening on port: ${PORT}`);
 });
